@@ -59,4 +59,9 @@ class ReservationService
         $this->reservationRepository->updateStatut($reservationId, $statut);
     }
 
+    public function getReservationParNumeroEtEmail(string $numero, string $email): ?array
+{
+    return $this->reservationRepository->findByNumeroEtEmail($numero, $email);
+}
+
 }

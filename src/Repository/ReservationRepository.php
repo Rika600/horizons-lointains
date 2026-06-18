@@ -48,13 +48,11 @@ class ReservationRepository
         $sql= "SELECT r.*, s.titre, s.image, s.prix_personne
                FROM reservation r
                JOIN sejour s ON r.sejour_id = s.sejour_id
-               JOIN utilisateur u ON r.utilisateur_id = u.utilisateur_id
-               WHERE r.numero_reservation = :numero AND u.email = :email";
+               WHERE r.numero_reservation = :numero AND r.email = :email";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':numero' => $numero, ':email' => $email]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result ?: null;
 
     }
-
 }
