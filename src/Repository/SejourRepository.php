@@ -40,22 +40,28 @@ class SejourRepository
         AND s.actif = TRUE
         ";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([':id => $id']);
+        $stmt->execute([':id' => $id]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, Sejour::class);
         $result = $stmt->fetch();
-        return $stmt->fetch() ?: null;
+        return $result ?: null;
     }
 
     public function findEquipements(int $sejourId): array
     {
         $sql = "
-            SELECT e.equipenment_id, e.libelle
+            SELECT e.equipement_id, e.libelle
             FROM equipement e
-            JOINT sejour_equipement se ON e.equipement_id = se.equipement_id
+            JOIN sejour_equipement se ON e.equipement_id = se.equipement_id
             WHERE se.sejour_id = :sejour_id
             ";
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute([':sejour_id' => $sejourId]);
         return $stmt->fetchAll(PDO::FETCH_CLASS, Equipement::class);
+    }
+
+    public function findAllDestinations(): array {
+        $sql = "SELECT destination_id, nom, description, image FROM destination ORDER BY nom ASC";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Destination::class);
     }
 }
