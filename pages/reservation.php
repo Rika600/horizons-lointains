@@ -53,6 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'date_depart' => $dateDepart,
             'date_retour' => $dateRetour,
             'nb_personnes' => $nbPersonnes,
+            'email'        => $email,
             'utilisateur_id' => $_SESSION['utilisateur_id'] ?? null
         ];
 

@@ -5,6 +5,7 @@ class Reservation
     private int $reservation_id;
     private string $numero_reservation;
     private int $utilisateur_id;
+    private string $email;
     private int $sejour_id;
     private string $date_depart;
     private string $date_retour;
@@ -23,6 +24,10 @@ class Reservation
 
     public function getUtilisateurId(): int { 
         return $this->utilisateur_id; 
+        }
+
+     public function getEmail(): string {
+           return $this->email;
         }
 
     public function getSejourId(): int { 

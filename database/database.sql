@@ -83,6 +83,7 @@ CREATE TABLE reservation (
     reservation_id INT PRIMARY KEY AUTO_INCREMENT,
     numero_reservation VARCHAR (50) NOT NULL UNIQUE,
     utilisateur_id INT NULL,
+    email VARCHAR(150) NOT  NULL
     sejour_id INT NOT NULL,
     date_depart DATE NOT NULL,
     date_retour DATE NOT NULL,

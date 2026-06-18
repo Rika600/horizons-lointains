@@ -36,6 +36,7 @@ class ReservationService
         $data = [
             ':numero_reservation' => $numero,
             ':utilisateur_id'     => $infos['utilisateur_id'] ?? null,
+            ':email'              => $infos['email'],
             ':sejour_id'          => $sejourId,
             ':date_depart'        => $infos['date_depart'],
             ':date_retour'        => $infos['date_retour'],
