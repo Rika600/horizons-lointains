@@ -55,4 +55,14 @@ class ReservationRepository
         return $result ?: null;
 
     }
+
+    public function findAll(): array
+    {
+        $sql = "SELECT r.*, s.titre
+            FROM reservation r
+            JOIN sejour s ON r.sejour_id = s.sejour_id
+            ORDER BY r.created_at DESC";
+        $stmt = $this->pdo->query($sql);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

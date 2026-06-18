@@ -18,7 +18,7 @@ class UtilisateurRepository
                 FROM utilisateur
                 WHERE email = :email";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute([' :emeil => $email']);
+        $stmt->execute([':email' => $email]);
         $stmt->setFetchMode(PDO::FETCH_CLASS, Utilisateur::class);
         $result = $stmt->fetch();
         return $result ?:null;

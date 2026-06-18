@@ -64,4 +64,9 @@ class ReservationService
     return $this->reservationRepository->findByNumeroEtEmail($numero, $email);
 }
 
+    public function getToutesReservations(): array
+    {
+        return $this->reservationRepository->findAll();
+    }
+
 }
