@@ -60,8 +60,8 @@ $destinations = $filtres['destinations'];
     </div>
 
     <div class="mt-3">
-        <button id="btn-filtrer" class="btn btn-dark px-4">Filtrer</button>
-        <button id="btn-reset" class="btn btn-outline-dark px-4 ms-2">Réinitialiser</button>
+        <button  type="button" id="btn-filtrer" class="btn btn-dark px-4">Filtrer</button>
+        <button type="button" id="btn-reset" class="btn btn-outline-dark px-4 ms-2">Réinitialiser</button>
     </div>
 </div>
 
