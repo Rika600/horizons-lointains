@@ -28,7 +28,7 @@
                     <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>">ACCUEIL</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>pages/sejours.php">Nos séjours</a></li>
                     <?php if (!isset($_SESSION['utilisateur_id'])) : ?>
-                        <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>pages/compte.php">COMPTE</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>pages/suivre-resrvation.php">SUIVRE MA RESERVATION</a></li>
                     <?php else : ?>
                         <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>espaces/espace-utilisateur.php">MON ESPACE</a></li>
                         <?php if ($_SESSION['role_id'] == 2 || $_SESSION['role_id'] == 1) : ?>

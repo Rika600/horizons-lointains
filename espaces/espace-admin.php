@@ -3,6 +3,8 @@ session_start();
 $pageTitle = 'Espace Admin - Horizons Lointains';
 require_once __DIR__ . '/../includes/header.php';
 require_once __DIR__ . '/../src/Database.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../src/Services/UtilisateurService.php';
 require_once __DIR__ . '/../src/Services/ReservationService.php';
 require_once __DIR__ . '/../src/Services/SejourService.php';
@@ -11,6 +13,7 @@ $pdo = Database::getConnection();
 $utilisateurService = new UtilisateurService($pdo);
 $reservationService = new ReservationService($pdo);
 $sejourService = new SejourService($pdo);
+$client = new MongoDB\Client(MONGODB_URI);
 
 $message_erreur =''; 
 
@@ -55,10 +58,26 @@ if (!isset($_SESSION['role_id']) || $_SESSION['role_id'] != 1) {
     exit;
 }
 
-// Récupérer les stats
+// Récupérer les stats MySQL
 $reservations = $reservationService->getToutesReservations();
 $nbReservations = count($reservations);
 $chiffreAffaires = array_sum(array_column($reservations, 'prix_total'));
+
+// Récupérer les stats MongoDB
+$db = $client->horizons_lointains;
+$collection = $db->stats_reservations;
+$stats = $collection->find([], ['sort' => ['sejour_id' => 1]]);
+$stats = iterator_to_array($stats);
+
+// Préparer les données pour Chart.js
+$labels = [];
+$nbReservationsChart = [];
+$ca = [];
+foreach ($stats as $s) {
+    $labels[] = $s['titre'];
+    $nbReservationsChart[] = (int)$s['nb_reservations'];
+    $ca[] =  (float) $s['chiffre_affaires'];
+}
 
 // Récupérer les séjours
 $sejours = $sejourService->getSejourActifs();
@@ -91,6 +110,31 @@ $sejours = $sejourService->getSejourActifs();
             <p><strong><?= htmlspecialchars($s->getTitre()) ?></strong> — <?= number_format($s->getPrixPersonne(), 2, ',', ' ') ?> €/pers — <?= $s->getDureeNuits() ?> nuits</p>
         </div>
     <?php endforeach; ?>
+
+
+    <!-- Graphique -->
+    <h2 class="mt-5 mb-3">Réservations par séjour</h2>
+    <canvas id="graphique-reservations" height="100"></canvas>
 </div>
+
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script>
+    var ctx = document.getElementById('graphique-reservations').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels:<?= json_encode($labels) ?>,
+            datasets: [{
+                label: 'Nombre de réservations',
+                data:<?= json_encode($nbReservationsChart) ?>,
+                backgroundColor: ['#1a6b8a', '#2d9cdb', '#27ae60', '#f39c12']
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: { y: { beginAtZero: true }}
+        }
+    });
+    </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

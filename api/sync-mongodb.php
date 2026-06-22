@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../src/Database.php';
-require_once __DIR__ . '/../src/config.php';
+require_once __DIR__ . '/../config.php';
 
 // 1. Connexion à MySQL
 $pdo = Database::getConnection();
