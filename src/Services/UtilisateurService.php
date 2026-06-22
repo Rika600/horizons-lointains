@@ -84,4 +84,9 @@ class UtilisateurService
         $this->utilisateurRepository->updateMotDePasse($utilisateur->getUtilisateurId(), $newPassword);
         return ['success' => true];
     }
+
+    public function getUtilisateurParEmail(string $email): ?Utilisateur
+    {
+        return $this->utilisateurRepository->findByEmail($email);
     }
+}
