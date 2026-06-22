@@ -60,6 +60,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $reservationService->creerReservation($sejourId, $infos, $prix);
         $numero = $result['numero'];
 
+        // Envoyer le mail de confirmation
+        require_once __DIR__ . '/../src/mailer.php';
+        envoyerMail (
+            $email,
+            'Confirmation de réservation - Horizons Lointains',
+            '<h2>Réservation confirmée !</h2>
+            <p>Bonjour ' .htmlspecialchars($nom) . ' ' . htmlspecialchars($prenom) . ',</p>
+            <p>Votre réservation <strong>' . $numero . '</strong> a bien été enregistrée.</p>
+            <p>Séjour : <strong>' . htmlspecialchars($sejour->getTitre()) . '</strong></p>    
+            <p>Du ' . htmlspecialchars($dateDepart) . ' au '  . htmlspecialchars($dateRetour) . '</p>
+            <p>Nombre de personnes : ' . $nbPersonnes . '</p>
+            <p>Total : <strong>' . number_format($prix['total'], 2, ',', ' ') . ' €</strong></p>
+            <p>Conservez votre numéro de réservation pour suivre votre dossier.</p> 
+            <p>L\'équipe Horizons Lointains</p>'
+            );
+
         $message_succes = 'Réservation ' . $numero . ' enregistrée ! Total : ' . number_format($prix['total'], 2, ',', ' ') . ' €';
     }
 }
