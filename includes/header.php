@@ -26,19 +26,18 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto gap-5">
                     <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>">ACCUEIL</a></li>
-                    <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>pages/sejours.php">Nos séjours</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>pages/sejours.php">NOS SEJOURS</a></li>
+
                     <?php if (!isset($_SESSION['utilisateur_id'])) : ?>
-                        <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>pages/suivre-resrvation.php">SUIVRE MA RESERVATION</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>pages/suivre-reservation.php">SUIVRE MA RESERVATION</a></li>
+                        <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>espaces/employe.php">CONNEXION</a></li>
                     <?php else : ?>
-                        <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>espaces/espace-utilisateur.php">MON ESPACE</a></li>
                         <?php if ($_SESSION['role_id'] == 2 || $_SESSION['role_id'] == 1) : ?>
                             <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>espaces/employe.php">EMPLOYÉ</a></li>
                         <?php endif; ?>
                         <?php if ($_SESSION['role_id'] == 1) : ?>
                             <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>espaces/espace-admin.php">ADMIN</a></li>
                         <?php endif; ?>
-                    <?php endif; ?>
-                    <?php if (isset($_SESSION['utilisateur_id'])) : ?>
                         <li class="nav-item"><a class="nav-link text-white" href="<?= BASE_URL ?>pages/deconnexion.php">DÉCONNEXION</a></li>
                     <?php endif; ?>
                 </ul>
