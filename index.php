@@ -15,7 +15,6 @@ require_once 'includes/header.php';
     <div class="py-5 mt-5">
         <h1>Horizons Lointains</h1>
         <p>Votre agence de voyage depuis 2010</p>
-        <a href="<?= BASE_URL ?>pages/sejours.php" class="btn btn-dark mt-3">Découvrer nos séjours</a>
     </div>
 </div>
 

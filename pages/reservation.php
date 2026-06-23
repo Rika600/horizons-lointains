@@ -136,8 +136,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="mb-3">
-                <label for="date_retour" class="form-label">Date de retour :</label>
-                <input id="date_retour" name="date_retour" type="date" required class="form-control">
+                <label class="form-label">Date de retour :</label>
+                <input id="date_retour" name="date_retour" type="text" readonly class="form-control" placeholder="Calculée automatiquement">
+                <input type="hidden" id="date_retour_hidden" name="date_retour">
             </div>
 
             <div class="mb-3">
@@ -166,5 +167,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script>var BASE_URL = '<?= BASE_URL ?>';</script>
 <script>var PRIX_PERSONNE = <?=  $sejour->getPrixPersonne() ?>;</script>
 <script src="<?= BASE_URL ?>js/calcul-prix.js"></script>
+ 
+<script>
+// Calcul automatique date de retour
+    var dateDepart = document.getElementById('date_depart');
+    var dateRetour = document.getElementById('date_retour');
+    var dateRetourHidden = document.getElementById('date_retour_hidden');
+
+    dateDepart.addEventListener('change', function() {
+        if (dateDepart.value) {
+            var depart = new Date(dateDepart.value);
+            depart.setDate(depart.getDate() + <?= $sejour->getDureeNuits() ?>);
+            var retour = depart.toISOString().split('T')[0];
+            var parts = retour.split('-');
+            dateRetour.value = parts[2] + '/' + parts[1] + '/' + parts[0];
+            dateRetourHidden.value = retour;
+        }
+        calculerTotal();
+    });
+    </script>
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?> 
