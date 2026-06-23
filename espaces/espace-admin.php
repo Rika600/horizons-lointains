@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['connexion'])) {
 if (!isset($_SESSION['role_id']) || $_SESSION['role_id'] != 1) {
 ?>
     <div class="container my-5">
-        <h1 class="text-center mb-5">Connexion Espace Admin</h1>
+        <h1 class="text-center mb-5">Connexion Espace Réservé</h1>
         <?php if ($message_erreur !== '') : ?>
             <div class="alert alert-danger text-center"><?= htmlspecialchars($message_erreur) ?></div>
         <?php endif; ?>

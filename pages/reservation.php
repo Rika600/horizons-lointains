@@ -81,7 +81,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<div class="container-my5">
+<div class="container my-5 px-md-5 px-4">
 
 <!-- Info réduction -->
  <div class="alert alert-info">
@@ -98,61 +98,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="alert alert-danger text-center"><?= htmlspecialchars($message_erreur) ?></div>
     <?php endif; ?> 
 
-    <form method="post" action="reservation.php?sejour_id=<?=  $sejourId ?>" class="formulaire-reservation">
-        <div class="row">
+   <form method="post" action="reservation.php?sejour_id=<?= $sejourId ?>" class="formulaire-reservation">
+    <div class="row">
 
         <!-- COLONNE GAUCHE : Vos informations -->
-         <div class="col-md-6">
-            <h2 class="text-center mb-4">Vos infomations</h2>
+        <div class="col-md-6">  
+            <h2 class="text-center mb-4">Vos informations</h2>
 
-            <label for="nom">Nom :
-                <input id="nom" name="nom" type="text" required>
-            </label>
+            <div class="mb-3">
+                <label for="nom" class="form-label">Nom :</label>
+                <input id="nom" name="nom" type="text" required class="form-control">
+            </div>
 
-            <label for="prenom">Prénom :
-                <input id="prenom" name="prenom" type="text" required>
-            </label>
+            <div class="mb-3">
+                <label for="prenom" class="form-label">Prénom :</label>
+                <input id="prenom" name="prenom" type="text" required class="form-control">
+            </div>
 
-            <label for="email">Email :
-                <input id="email" name="email" type="email" required>
-            </label>
-         </div>
-
-         <!-- COLONNE DROITE : Le séjour choisi -->
-          <div class="col-md-6">
-                <h2 class="text-center mb-4">Votre séjour></h2>
-
-              <label>Séjour choisi :
-                 <input type="text" value="<?= htmlspecialchars($sejour->getTitre()) ?>" readonly>
-               </label>
-              
-                <label for="date_depart">Date de départ :
-                    <input id="date_depart" name="date_depart" type="date" required>
-                </label>
-              
-                <label for="date_retour">Date de retour :
-                     <input id="date_retour" name="date_retour" type="date" required>
-                </label>
-              
-                <label for="nb_personnes">Nombre de personnes :
-                    <input id="nb_personnes" name="nb_personnes" type="number" min="1" value="1" required>
-                </label>
-              
-             <!-- Récap prix -->
-                <label>Prix par personne :
-                  <input type="text" value="<?= number_format($sejour->getPrixPersonne(), 2, ',', ' ') ?> €" readonly>
-                </label>
-              
-                <label><strong>Total estimé :</strong>
-                    <input id="total_estime" type="text" value="" readonly>
-                </label>
-            </div>  
-          </div>
-
-          <div class="text-center mt-4">
-            <input type="submit" value="Réserver" class="btn btn-dark">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email :</label>
+                <input id="email" name="email" type="email" required class="form-control">
+            </div>
         </div>
-    </form>
+
+        <!-- COLONNE DROITE : Le séjour choisi -->
+        <div class="col-md-6">
+            <h2 class="text-center mb-4">Votre séjour</h2>
+
+            <div class="mb-3">
+                <label class="form-label">Séjour choisi :</label>
+                <input type="text" value="<?= htmlspecialchars($sejour->getTitre()) ?>" readonly class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="date_depart" class="form-label">Date de départ :</label>
+                <input id="date_depart" name="date_depart" type="date" required class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="date_retour" class="form-label">Date de retour :</label>
+                <input id="date_retour" name="date_retour" type="date" required class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label for="nb_personnes" class="form-label">Nombre de personnes :</label>
+                <input id="nb_personnes" name="nb_personnes" type="number" min="1" value="1" required class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Prix par personne :</label>
+                <input type="text" value="<?= number_format($sejour->getPrixPersonne(), 2, ',', ' ') ?> €" readonly class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label"><strong>Total estimé :</strong></label>
+                <input id="total_estime" type="text" value="" readonly class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <input type="submit" value="Réserver" class="btn btn-dark">
+    </div>
+</form>
 </div>
 
 <script>var BASE_URL = '<?= BASE_URL ?>';</script>

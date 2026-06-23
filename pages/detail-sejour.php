@@ -24,49 +24,43 @@ $sejour = $sejourComplet['sejour'];
 $equipements = $sejourComplet['equipements'];
 ?>
 
-<!-- Page détail d'un séjour : image, infos, équpements, prix -->
- <div class="container my-5">
-    <h1 class="text-center mb-5"><?= htmlspecialchars($sejour->getTitre()) ?></h1>
+<!-- Image pleine largeur avec encart prix -->
+<div class="position-relative">
+    <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($sejour->getImage()) ?>" 
+         alt="<?= htmlspecialchars($sejour->getTitre()) ?>"
+         class="detail-image">
+    
+    <!-- Encart prix en bas à droite -->
+    <div class="detail-prix-encart">
+        <p class="text-uppercase small mb-1" style="color:#a0c4d0;">À partir de</p>
+        <p class="fs-2 fw-bold text-white mb-0"><?= number_format($sejour->getPrixPersonne(), 0, ',', ' ') ?> €</p>
+        <p class="text-white mb-3"><?= $sejour->getDureeNuits() ?> nuits</p>
+        <hr style="border-color: rgba(255,255,255,0.3);">
+        <a href="<?= BASE_URL ?>pages/reservation.php?sejour_id=<?= $sejour->getSejourId() ?>" class="btn btn-reserver w-100">
+            Réserver ce séjour
+        </a>
+    </div>
+</div>
 
- <div class="sejour-card">
-        <div class="sejour-top">
-            <!-- Image à gauche -->
-            <div class="sejour-left">
-                <div class="sejour-image-wrapper">
-                    <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($sejour->getImage()) ?>" 
-                         alt="<?= htmlspecialchars($sejour->getTitre()) ?>"
-                         class="sejour-image">
-                </div>
-            </div>   
+<!-- Titre + infos en dessous -->
+<div class="container my-5">
+    <h1 class="mb-3"><?= htmlspecialchars($sejour->getTitre()) ?></h1>
+    <p class="lead"><?= htmlspecialchars($sejour->getDescription()) ?></p>
 
-            <!-- Infos à droite -->
-             <div class="sejour-infos">
-                <p><?= htmlspecialchars($sejour->getDescription()) ?></p>
-
-                <h4>Equipements</h4>
-                <ul>
-                    <?php foreach ($equipements as $e) : ?>
-                        <li><?= htmlspecialchars($e->getLibelle()) ?></li>
-                        <?php endforeach; ?>
-                </ul>
-
-                <p><strong>Inclus :</strong> <?= htmlspecialchars($sejour->getPrixComprend()) ?></p>
-                <p><strong>Non inclus :</strong> <?= htmlspecialchars($sejour->getPrixComprendPas()) ?></p>
-
-                <p class="prix">
-                    <?= number_format($sejour->getPrixPersonne(), 2, ',', ' ') ?> € par personne,<br>
-                    <?= $sejour->getDureeNuits() ?> nuits.
-                </p>
-             </div>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h4>Équipements</h4>
+            <ul>
+                <?php foreach ($equipements as $e) : ?>
+                    <li><?= htmlspecialchars($e->getLibelle()) ?></li>
+                <?php endforeach; ?>
+            </ul>
         </div>
-
-        <!-- Bouton réserver -->
-         <div class="text-center my-4">
-            <a href="<?= BASE_URL ?>pages/reservation.php?sejour_id=<?= $sejour->getSejourId() ?>" class="btn btn-dark px-5 py-2">
-                Réserver ce séjour
-            </a>
-         </div>
-       </div>
-     </div>
+        <div class="col-md-6">
+            <p><strong>Inclus :</strong> <?= htmlspecialchars($sejour->getPrixComprend()) ?></p>
+            <p><strong>Non inclus :</strong> <?= htmlspecialchars($sejour->getPrixComprendPas()) ?></p>
+        </div>
+    </div>
+</div>
 
      <?php require_once __DIR__ . '/../includes/footer.php'; ?>

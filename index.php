@@ -21,7 +21,8 @@ require_once 'includes/header.php';
 
 <!-- Section Destinations -->
 <div class="container my-5">
-    <h2 class="text-center mb-4">NOS DESTINATIONS</h2>
+    <h2 class="text-center mb-4">Où désirez-vous vous évader ?
+        <br>Choisissez votre destination</h2>
     <hr>
     <div class="row">
         <?php foreach ($destinations as $d): ?>
@@ -38,8 +39,32 @@ require_once 'includes/header.php';
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
-    </div>
-</div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+
+                    <!-- Section Pourquoi nous choisir -->
+                     <div class="container my-5">
+                        <h2 class="text-center mb-5">Pourquoi nous choisir ?</h2>
+                        <div class="row text-center">
+                            <div class="col-md-3">
+                            <h4>🌎 Destination exclusives</h4>
+                            <p>Des séjours soigneusement sélectionnés aux quatre coins du monde.</p>
+                        </div>
+                        <div class="col-md-3">
+                            <h4>✈️ Voyage clé en main</h4>
+                            <p>Vol, hébergement et activités inclus pour un voyage sans souci.</p>
+                     </div>
+                     <div class="col-md-3">
+                        <h4>💬 Accompagement personnalisé</h4>
+                        <p>Une équipe disponible pour vous conseiller et répondre à vos questions.</p>
+                     </div>
+                     <div class="col-md-3">
+                        <h4>⭐ Qualité garantie</h4>
+                        <p>Des hébergements sélectionnés pour leur confort et leur authenticité.</p>
+                     </div>
+                   </div>
+                </div>
+        
 
 <?php require_once 'includes/footer.php'; ?>

@@ -10,7 +10,6 @@
         <hr>
         <p>
             <a href="<?= BASE_URL ?>pages/mentions-legales.php" class="text-white text-decoration-none">Mentions Légales</a>
-            |
             <a href="<?= BASE_URL ?>pages/cgv.php" class="text-white text-decoration-none">Conditions Générales de Vente</a>
         </p>
         <p>&copy; <?= date('Y') ?> Horizons Lointains - Tous droits réservés</p>

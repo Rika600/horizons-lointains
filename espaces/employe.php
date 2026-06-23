@@ -34,26 +34,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['connexion'])) {
 ?>
 
     <div class="container my-5"> 
-        <h1 class="text-center mb-5">Connexion Espace Employé</h1>
+        <h1 class="text-center mb-5">Connexion  Espace Réservé</h1>
 
         <?php if ($message_erreur !=='') :?>
             <div class="alert alert-danger text-center"><?= htmlspecialchars($message_erreur) ?></div>
         <?php endif; ?>
 
         <form method="post" action="employe.php" class="col-md-6 mx-auto">
-            <input type="hidden" name="connexion" value="1">
+    <input type="hidden" name="connexion" value="1">
 
-            <label for="email">Email :
-                <input id="email" name="email" type="email" required>
-            </label>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email :</label>
+        <input id="email" name="email" type="email" required class="form-control">
+    </div>
 
-            <label for="mot_de_passe">Mot de passe :
-                <input id="mot_de_passe" name="mot_de_passe" type="password" required>
-            </label>
+    <div class="mb-3">
+        <label for="mot_de_passe" class="form-label">Mot de passe :</label>
+        <input id="mot_de_passe" name="mot_de_passe" type="password" required class="form-control">
+    </div>
 
-            <div class="text-center mt-4">
-                <input type="submit" value="Se connecter" class="btn btn-dark">
-            </div>
+    <div class="text-center mt-4">
+        <input type="submit" value="Se connecter" class="btn btn-dark">
+    </div>
         </form>
     </div>
 

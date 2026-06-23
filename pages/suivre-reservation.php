@@ -31,19 +31,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
              <div class="alert alert-danger text-center"><?= htmlspecialchars($message_erreur) ?></div>
       <?php endif; ?>
 
-      <form method="post" action="suivre-reservation.php" class="formulaire-suivi">
-             <label for="numero">Numéro de réservation :
-                 <input id="numero" name="numero" type="text" placeholder="RES-20260618-1234" required>
-             </label>
-     
-             <label for="email">Email :
-                 <input id="email" name="email" type="email" required>
-             </label>
-     
-             <div class="text-center mt-4">
-                 <input type="submit" value="Rechercher" class="btn btn-dark">
-             </div>
-         </form>
+      <form method="post" action="suivre-reservation.php" class="col-md-6 mx-auto">
+    <div class="mb-3">
+        <label for="numero" class="form-label">Numéro de réservation :</label>
+        <input id="numero" name="numero" type="text" placeholder="RES-20260618-1234" required class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email :</label>
+        <input id="email" name="email" type="email" required class="form-control">
+    </div>
+
+    <div class="text-center mt-4">
+        <input type="submit" value="Rechercher" class="btn btn-dark">
+    </div>
+</form>
 
     <?php if ($reservation) :?>
         <div class="card mt-5 p-4">

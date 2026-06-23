@@ -22,7 +22,7 @@ $destinations = $filtres['destinations'];
             <path d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         </svg>
     </button>  
-    <h1 class="text-center flex-grow-1 m-0">Nos Séjours</h1>
+    <h1 class="text-center flex-grow-1 m-0 mb-5">Nos Séjours</h1>
 </div>
 
 <div id="filtres-panel" class="filtres-container mb-4" style="display: none;">
@@ -66,46 +66,34 @@ $destinations = $filtres['destinations'];
 </div>
 
 <! -- ============ GRILLE DES SEJOURS ========== -- >
-<div class="sejours-grid" id="sejours-grid">
+<div class="row" id="sejours-grid">
 
 <?php foreach ($sejours as $sejour) : ?>
     
     <!-- Carte d'un séjour : image, titre, prix, durée, lien détail -->
-     <div class="sejour-wrapper">
-            <div class="sejour-card">
-                    <div class="sejour-top">
-                        <div class="sejour-left">
-                            <div class="sejour-image-wrapper">
-                                <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($sejour->getImage()) ?>"
-                                     alt="<?= htmlspecialchars($sejour->getTitre()) ?>"
-                                     class="sejour-image">
-                                <a href="<?= BASE_URL ?>pages/detail-sejour.php?id=<?= $sejour->getSejourId() ?>" class="sejour-overlay">
-                                    <span class="overlay-button">Voir le détail</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="sejour-infos">
-                            <h3 class="sejour-titre"><?= htmlspecialchars($sejour->getTitre())  ?></h3>
-                            <hr class="sejour-line mb-3">
-
-                            <p class="sejour-description"><?= htmlentities($sejour->getDescription()) ?></p>
-
-                            <p class="prix">
-                                <?= number_format($sejour->getPrixPersonne(), 2, ',', '') ?> € par personne,<br>
-                                <?= $sejour->getDureeNuits() ?> nuits.
-                            </p>
-
-                            <a href="<?= BASE_URL ?>pages/detail-sejour.php?id=<?= $sejour->getSejourId() ?>" class="btn btn-dark">
-                                Voir le détail                       
-                        </a>
-                        </div>
-                    </div>
+    <div class="col-md-6 mb-5 sejour-wrapper">
+    <div class="card h-100 border-0">
+        <div class="position-relative">
+            <img src="<?= BASE_URL ?>images/<?= htmlspecialchars($sejour->getImage()) ?>"
+                 alt="<?= htmlspecialchars($sejour->getTitre()) ?>"
+                 class="card-img-top sejour-image">
+            
+            <!-- Prix en haut à gauche -->
+            <div class="sejour-prix-badge">
+                À partir de <br><?= number_format($sejour->getPrixPersonne(), 0, ',', ' ') ?> € <br> <?= $sejour->getDureeNuits() ?> nuits
             </div>
-     </div>
-     <?php endforeach; ?>
 
-</div>
+            <!-- Titre en bas de l'image -->
+            <div class="sejour-titre-overlay">
+                <h3 class="mb-2"><?= htmlspecialchars($sejour->getTitre()) ?></h3>
+                <a href="<?= BASE_URL ?>pages/detail-sejour.php?id=<?= $sejour->getSejourId() ?>" class="btn btn-sm">
+                    Découvrir le séjour
+                </a>
+            </div>
+        </div>
+       </div>
+    </div>
+     <?php endforeach; ?>
 
 <!-- Variable BASE_URL accessible en JavaScript + chargement du fichier de filtres -->
 <script>var BASE_URL = '<?= BASE_URL ?>';</script>
