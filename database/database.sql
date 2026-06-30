@@ -1,3 +1,4 @@
+SET NAMES utf8mb4;
 CREATE DATABASE IF NOT EXISTS horizons_lointains
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
@@ -83,7 +84,7 @@ CREATE TABLE reservation (
     reservation_id INT PRIMARY KEY AUTO_INCREMENT,
     numero_reservation VARCHAR (50) NOT NULL UNIQUE,
     utilisateur_id INT NULL,
-    email VARCHAR(150) NOT  NULL
+    email VARCHAR(150) NOT  NULL,
     sejour_id INT NOT NULL,
     date_depart DATE NOT NULL,
     date_retour DATE NOT NULL,
