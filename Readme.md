@@ -35,7 +35,7 @@ Créer un fichier `config.php` à la racine du projet avec :
 <?php
 define('BASE_URL', '/horizons-lointains/');
 define('DB_HOST', '127.0.0.1');
-define('DB_PORT', '3307');
+define('DB_PORT', '3306');
 define('DB_NAME', 'horizons_lointains');
 define('DB_USER', 'root');
 define('DB_PASSWORD', '');
@@ -70,4 +70,11 @@ Pour synchroniser les statistiques vers MongoDB Atlas :
 - **Back-end** : PHP 8.2 (POO), PDO, PHPMailer
 - **Base de données** : MySQL (relationnelle), MongoDB Atlas (non relationnelle)
 - **Outils** : Git/GitHub, Figma, Composer
+
+## Lancer avec Docker
+1. Installer Docker Desktop
+2. Lancer : `docker-compose up --build`
+3. Ouvrir le navigateur : `http://localhost:8081/` (Horizons Lointains) ou `http://localhost:8082/` (Le Pacte de Gray)
+
 - **Déploiement** : Local (XAMPP)
+
